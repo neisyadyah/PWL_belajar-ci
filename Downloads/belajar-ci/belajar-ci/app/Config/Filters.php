@@ -26,6 +26,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'forcehttps'    => \CodeIgniter\Filters\ForceHTTPS::class,
+        'auth' => \App\Filters\Auth::class,
     ];
 
     /**
