@@ -1,5 +1,7 @@
 <h1>Data Produk</h1>
 
+<?php /** @var array $products */ ?>
+
 <table border="1" width="100%" cellpadding="5">
     <tr>
         <th>No</th>
@@ -11,14 +13,14 @@
 
     <?php foreach ($products as $index => $produk) : ?>
     <?php
-		    $path = FCPATH . 'img/' . $produk['foto'];
+        $path = FCPATH . 'img/' . $produk['foto'];
         $base64 = '';
-        
+
         if (file_exists($path)) {
-	        $type = pathinfo($path, PATHINFO_EXTENSION);
-	        $data = file_get_contents($path);
-	        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-				}
+            $type = pathinfo($path, PATHINFO_EXTENSION);
+            $data = file_get_contents($path);
+            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        }
     ?>
         <tr>
             <td align="center"><?= $index + 1 ?></td>
@@ -35,4 +37,4 @@
         </tr>
     <?php endforeach; ?>
 </table>
-Downloaded on <?= date("Y-m-d H:i:s") ?>
+<p>Downloaded on <?= date("Y-m-d H:i:s") ?></p>

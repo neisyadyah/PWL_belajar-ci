@@ -1,15 +1,44 @@
 <?php
-// Validation pada controller  
 
-//1. tentukan rules
-$this->form_validation->set_rules('nama', 'Nama', 'required');
-$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+namespace Config;
 
-//2. cek dengan menjalankan validation, hasilnya nilai true/false
-if ($this->form_validation->run() === FALSE) {
-    // Tampilkan pesan kesalahan
-    $errors = $this->form_validation->error_array();
-} else {
-    // Proses data form
+use CodeIgniter\Config\BaseConfig;
+use CodeIgniter\Validation\StrictRules\CreditCardRules;
+use CodeIgniter\Validation\StrictRules\FileRules;
+use CodeIgniter\Validation\StrictRules\FormatRules;
+use CodeIgniter\Validation\StrictRules\Rules;
+
+class Validation extends BaseConfig
+{
+    // --------------------------------------------------------------------
+    // Setup
+    // --------------------------------------------------------------------
+
+    /**
+     * Stores the classes that contain the
+     * rules that are available.
+     *
+     * @var list<string>
+     */
+    public array $ruleSets = [
+        Rules::class,
+        FormatRules::class,
+        FileRules::class,
+        CreditCardRules::class,
+    ];
+
+    /**
+     * Specifies the views that are used to display the
+     * errors.
+     *
+     * @var array<string, string>
+     */
+    public array $templates = [
+        'list'   => 'CodeIgniter\Validation\Views\list',
+        'single' => 'CodeIgniter\Validation\Views\single',
+    ];
+
+    // --------------------------------------------------------------------
+    // Rules
+    // --------------------------------------------------------------------
 }
-?>

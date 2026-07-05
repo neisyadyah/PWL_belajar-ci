@@ -11,11 +11,11 @@ $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::login');
 $routes->get('logout', 'AuthController::logout');
 
-$routes->group('produk',['filter' => 'auth'], function ($routes){
-    $routes->get('produk', 'ProdukController::index', ['filter' => 'auth']);
-    $routes->post('produk/edit/(:any)', 'ProdukController::edit/$1', ['filter' => 'auth']);
-    $routes->post('produk/edit/(:any)', 'ProdukController::edit/$1', ['filter' => 'auth']);
-    $routes->get('produk/delete/(:any)', 'ProdukController::delete/$1', ['filter' => 'auth']);
+$routes->group('produk', ['filter' => 'auth'], function ($routes) {
+    $routes->get('', 'ProdukController::index');
+    $routes->post('', 'ProdukController::create');
+    $routes->post('edit/(:any)', 'ProdukController::edit/$1');
+    $routes->get('delete/(:any)', 'ProdukController::delete/$1');
     $routes->get('download', 'ProdukController::download');
 });
 
@@ -26,7 +26,17 @@ $routes->group('keranjang', ['filter' => 'auth'], function ($routes) {
     $routes->get('delete/(:any)', 'TransaksiController::cart_delete/$1');
     $routes->get('clear', 'TransaksiController::cart_clear');
 });
-$routes->get('keranjang', 'TransaksiController::index', ['filter' => 'auth']);
+
+$routes->get('checkout', 'TransaksiController::checkout', ['filter' => 'auth']);
+$routes->post('buy', 'TransaksiController::buy', ['filter' => 'auth']);
+$routes->get('history', 'TransaksiController::history', ['filter' => 'auth']);
+
+$routes->get('ajax/destinations', 'TransaksiController::destinations', ['filter' => 'auth']);
+$routes->get('ajax/costs', 'TransaksiController::costs', ['filter' => 'auth']);
+
+$routes->resource('api/products', ['controller' => 'Api\ProdukController']);
+$routes->get('api/transactions', 'Api\TransaksiController::index');
+
 $routes->get('faq', 'Home::faq', ['filter' => 'auth']);
 $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 $routes->get('contact', 'Home::contact', ['filter' => 'auth']);

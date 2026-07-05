@@ -6,11 +6,11 @@ use CodeIgniter\Model;
 
 class ProductModel extends Model
 {
-    protected $table            = 'product'; //disesuaikan
+    protected $table            = 'product'; 
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = true; //disesuaikan
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = ['nama','harga','jumlah','foto']; //disesuaikan
 
@@ -21,7 +21,7 @@ class ProductModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = true; //disesuaikan
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -30,7 +30,7 @@ class ProductModel extends Model
     // Validation
     protected $validationRules      = [];
     protected $validationMessages   = [];
-    protected $skipValidation       = true; //disesuaikan
+    protected $skipValidation       = true;
     protected $cleanValidationRules = true;
 
     // Callbacks
